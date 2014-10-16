@@ -8,16 +8,47 @@ import org.slf4j.LoggerFactory;
 public class StringUtil {
 	private final static Logger logger = LoggerFactory.getLogger(StringUtil.class);
 
-	public static boolean areAnagrams(String str1, String str2) {
+	public static boolean areAnagramsSorting(String str1, String str2) {
 		char[] arr1 = str1.toCharArray();
 		char[] arr2 = str2.toCharArray();
 		Arrays.sort(arr1);
 		Arrays.sort(arr2);
 		String newStr1 = new String(arr1);
 		String newStr2 = new String(arr2);
-		logger.debug("str1 : ["+str1+"] newStr1: ["+newStr1+"]");
-		logger.debug("str2 : ["+str2+"] newStr2: ["+newStr2+"]");
+		logger.debug("str1 : [" + str1 + "] newStr1: [" + newStr1 + "]");
+		logger.debug("str2 : [" + str2 + "] newStr2: [" + newStr2 + "]");
 		return newStr1.equals(newStr2);
+	}
+
+	public static boolean areAnagrams(String str1, String str2) {
+		if (str1.length() != str2.length()) {
+			return false;
+		}
+		int[] letters = new int[256];
+		int num_unique_chars = 0;
+		int num_completed_t = 0;
+		char[] s_array = str1.toCharArray();
+		for (char c : s_array) { // count number of each char in s.
+			if (letters[c] == 0) {
+				++num_unique_chars;
+			}
+			++letters[c];
+		}
+		for (int i = 0; i < str2.length(); ++i) {
+			int c = (int) str2.charAt(i);
+			if (letters[c] == 0) { // Found more of char c in t than in s.
+				return false;
+			}
+			--letters[c];
+			if (letters[c] == 0) {
+				++num_completed_t;
+				if (num_completed_t == num_unique_chars) {
+					// it’s a match if t has been processed completely
+					return i == str2.length() - 1;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
