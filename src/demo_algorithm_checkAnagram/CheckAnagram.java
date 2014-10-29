@@ -18,6 +18,10 @@ public class CheckAnagram {
 	}
 	/**
 	 * 这个方法判断两个String是否彼此是 Anagram</br>
+	 * 思路很简单</br>
+	 * 就是看两个字符串经过排序之后是否相同</br>
+	 * 相同表示这两个字符串中有完全相同的字符，即互相为anagram
+	 * 反之，则互相不为anagram
 	 * 
 	 * 
 	 * @param str1
@@ -33,7 +37,15 @@ public class CheckAnagram {
 		String newStr2 = new String(arr2);
 		return newStr1.equals(newStr2);
 	}
-
+	
+	/**
+	 * 这个方法判断两个String是否彼此是 Anagram</br>
+	 * 
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @return
+	 */
 	public static boolean areAnagrams(String str1, String str2) {
 		if (str1.length() != str2.length()) {
 			return false;
