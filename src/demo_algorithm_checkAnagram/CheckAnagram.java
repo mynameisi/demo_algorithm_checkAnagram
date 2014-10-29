@@ -1,21 +1,67 @@
 package demo_algorithm_checkAnagram;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Arrays;
 
 public class CheckAnagram {
-	// 用 Logger 类库进行程序的 log 工作
-	private final static Logger logger = LoggerFactory.getLogger(CheckAnagram.class);
+	
 
 	public static void main(String args[]) throws Exception {
 
 		String str1 = "abc";
 		String str2 = "cba";
-		if (StringUtil.areAnagrams(str1, str2)) {
-			logger.debug(str1 + " : " + str2 + " are anagrams");
+		if (CheckAnagram.areAnagrams(str1, str2)) {
+			System.out.println(str1 + " : " + str2 + "彼此是 anagrams");
 		} else {
-			logger.debug(str1 + " : " + str2 + " are not anagrams");
+			System.out.println(str1 + " : " + str2 + "彼此不是 anagrams");
 		}
 
+	}
+	/**
+	 * 这个方法判断两个String是否彼此是 Anagram</br>
+	 * 
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @return
+	 */
+	public static boolean areAnagramsSorting(String str1, String str2) {
+		char[] arr1 = str1.toCharArray();
+		char[] arr2 = str2.toCharArray();
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
+		String newStr1 = new String(arr1);
+		String newStr2 = new String(arr2);
+		return newStr1.equals(newStr2);
+	}
+
+	public static boolean areAnagrams(String str1, String str2) {
+		if (str1.length() != str2.length()) {
+			return false;
+		}
+		int[] letters = new int[256];
+		int num_unique_chars = 0;
+		int num_completed_t = 0;
+		char[] s_array = str1.toCharArray();
+		for (char c : s_array) { // count number of each char in s.
+			if (letters[c] == 0) {
+				++num_unique_chars;
+			}
+			++letters[c];
+		}
+		for (int i = 0; i < str2.length(); ++i) {
+			int c = (int) str2.charAt(i);
+			if (letters[c] == 0) { // Found more of char c in t than in s.
+				return false;
+			}
+			--letters[c];
+			if (letters[c] == 0) {
+				++num_completed_t;
+				if (num_completed_t == num_unique_chars) {
+					// it’s a match if t has been processed completely
+					return i == str2.length() - 1;
+				}
+			}
+		}
+		return false;
 	}
 }
