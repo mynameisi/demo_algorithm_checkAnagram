@@ -1,14 +1,14 @@
 package demo_algorithm_checkAnagram;
 
 
-public class CheckAnagramMain {
+public class CheckAnagramExtraBuffer {
 	
 
 	public static void main(String args[]) throws Exception {
 
 		String str1 = "abc";
 		String str2 = "cbd";
-		if (CheckAnagramMain.areAnagrams(str1, str2)) {
+		if (CheckAnagramExtraBuffer.areAnagrams(str1, str2)) {
 			System.out.println(str1 + " : " + str2 + "彼此是 anagrams");
 		} else {
 			System.out.println(str1 + " : " + str2 + "彼此不是 anagrams");
