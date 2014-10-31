@@ -42,6 +42,8 @@ public class CheckAnagramExtraBuffer {
 		//TODO:在这里可以加一段代码优化以下么？
 		
 		int[] letters = new int[256];	//声明一个记录表功能的数组，长度为256个，每个位置对应ASCII码表中的一个字母	
+		//TODO:能不能用一个占用空间更小，速度更快的记录表？提示：要用到位移操作
+		
 		for (char c : str1.toCharArray()) { 
 			letters[c]++;//不管记录还是没记录过，都在C的位置加一次出现频率的记录
 		}
