@@ -39,10 +39,7 @@ public class CheckAnagramExtraBuffer {
 	 * @return
 	 */
 	public static boolean areAnagrams(String str1, String str2) {
-		//如果两个字符串不一样长，肯定不是anagram 就不用考虑了
-		if (str1.length() != str2.length()) {
-			return false;
-		}
+		//TODO:在这里可以加一段代码优化以下么？
 		
 		int[] letters = new int[256];	//声明一个记录表功能的数组，长度为256个，每个位置对应ASCII码表中的一个字母	
 		for (char c : str1.toCharArray()) { 

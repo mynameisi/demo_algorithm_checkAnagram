@@ -17,11 +17,12 @@ public class CheckAnagramSorting {
 
 	}
 	/**
-	 * 这个方法判断两个String是否彼此是 Anagram</br>
-	 * 思路很简单</br>
-	 * 就是看两个字符串经过排序之后是否相同</br>
-	 * 相同表示这两个字符串中有完全相同的字符，即互相为anagram
-	 * 反之，则互相不为anagram
+	 * 这个方法判断两个字符串是否彼此是 Anagram</br>
+	 * 即：两个字符串是否包含有相同数量的相同内容的字符</br>
+	 * 比如 abbc 和 bcab 就彼此是 anagram 因为 都有1个a,2个b, 1个c</br>
+	 * 算法思路很简单：先把两个字符串都排序，排序后如果两个字符串一样就是anagram，否则不是</br>
+	 * 比如：abbc 和 bcab 经过排序后都是 abbc 表示两者彼此是anagram
+	 * 而： abbc 和 bcca 经过排序，一个是 abbc，另一个是 abcc, 表示两者彼此不是anagram
 	 * 
 	 * 
 	 * @param str1
@@ -29,6 +30,8 @@ public class CheckAnagramSorting {
 	 * @return
 	 */
 	public static boolean areAnagramsSorting(String str1, String str2) {
+		//TODO:这里可以加一段代码优化一下么?
+		
 		char[] arr1 = str1.toCharArray();
 		char[] arr2 = str2.toCharArray();
 		Arrays.sort(arr1);
